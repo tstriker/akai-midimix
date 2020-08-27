@@ -71,7 +71,7 @@ Use midi instance's `addEventListener(eventType, callback)` and `removeEventList
 subscribe to the events. There are 3 events:
 
 * `cc` - fired on slider/dial turn. The event data is `{code, keyCode, val, prevVal}`
-* `keydown` - fired when any of the buttons are pressed (with the exception of send all).
+* `keydown` / 'keyup' - fired when any of the buttons are pressed (with the exception of send all).
 
 
 # Licence & Thanks
