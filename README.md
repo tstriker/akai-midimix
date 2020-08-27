@@ -13,30 +13,29 @@ import {MidiMix} from "akai-midimix";
 
 const midi = new MidiMix();
 
-
 midi.connect().then(() => {
     // run some commands right on startup (e.g. setting the toggle lights)
     console.log("Midi connected!");
     midi.m1 = true; // will light up the m1 button - see below for layout
 });
 
-midi.addEventListener("cc", (data) => {
+midi.addEventListener("cc", data => {
     console.log("CC dial/slider turned", data);
 });
 
-midi.addEventListener("keydown", (data) => {
+midi.addEventListener("keydown", data => {
     console.log("Button press", data);
 });
 ```
 
 # Names for the buttons and sliders
 
-The midi has 8 columns, each column having 3 dials, 2 buttons, and a slider.
+The midi has 8 columns, each column has 3 dials, 2 buttons, and a slider.
 Then, extra, there are the bank left, bank right, solo buttons, and the "master" slider.
 
 To keep things simple, we are making use of the columns. Event data will contain
-both, the original code (in keyCode field) and the symbolic field.
-C stands for "continuous control", "m" for mute, "r" for rec, and "s" for slider.
+both, the original code (in keyCode field) and the symbolic field (in key)).
+"c" stands for "continuous control", "m" for mute, "r" for rec, and "s" for slider.
 
 ```
 c1    c2    c3    c4    c5    c6    c7    c8
@@ -51,9 +50,9 @@ s1    s2    s3    s4    s5    s6    s7    s8    master
 ```
 
 
-# Reading dial/slider states and setting the button lighs
+# Reading dial/slider states and setting the button lights
 
-Note: There seems to be no way to find out the initial state of the knobs when you connect to it. Luckily, that's what
+Note: There doesn't seem to be any way to find out the initial state of the knobs when you connect to it. Luckily, that's what
 the "Send All" hardware button is there for - it will generate change events for all the CC controls and the library
 will have their state from there on out. Alternatively, the state for individual controls will be set when you
 physically poke them.
@@ -64,14 +63,16 @@ All the buttons, with the exception of "Send All" and "Solo" have an LED that yo
 Simply set the value to true/false accordingly to the button: `midi.bank_left = true`.
 
 
-
 # Events
 
 Use midi instance's `addEventListener(eventType, callback)` and `removeEventListener(eventType, callback)` to
-subscribe to the events. There are 3 events:
+subscribe to the events. Events:
 
 * `cc` - fired on slider/dial turn. The event data is `{code, keyCode, val, prevVal}`
-* `keydown` / 'keyup' - fired when any of the buttons are pressed (with the exception of send all).
+* `keydown` / `keyup` - fired when any of the buttons are pressed (with the exception of send all). 
+   The event data is `{key, code, keyCode}`, where key is the symbolic name, code is the hardware code, and keyCode
+   is key again, but in PascalCase. The event data is intentionally set so that you can have single handler for, both,
+   midi, and the keyboard.
 
 
 # Licence & Thanks
