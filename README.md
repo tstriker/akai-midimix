@@ -7,6 +7,8 @@ This package makes it simple to access your AKAI Midimix's state in browser, usi
 
 ```npm install akai-midimix```
 
+Alternatively, you can just copy the index.js from the repository into your project and import that.
+
 # Initialization
 ```javascript
 import {MidiMix} from "akai-midimix";
@@ -69,7 +71,7 @@ Use midi instance's `addEventListener(eventType, callback)` and `removeEventList
 subscribe to the events. Events:
 
 * `cc` - fired on slider/dial turn. The event data is `{code, keyCode, val, prevVal}`
-* `keydown` / `keyup` - fired when any of the buttons are pressed (with the exception of send all). 
+* `keydown` / `keyup` - fired when any of the buttons are pressed (with the exception of send all).
    The event data is `{key, code, keyCode}`, where key is the symbolic name, code is the hardware code, and keyCode
    is key again, but in PascalCase. The event data is intentionally set so that you can have single handler for, both,
    midi, and the keyboard.

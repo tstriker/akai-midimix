@@ -22,11 +22,12 @@ class MidiMix {
                     if (bool == _states[button]) {
                         return;
                     }
+                    _states[button] = bool;
 
                     if (!this.connected) {
-                        throw new Error("MIDI not connected!");
+                        // we're not connected but we're not gonna shout about it as we already yelled on connect
+                        return;
                     }
-                    _states[button] = bool;
                     this._output.send([0x90, MidiButtons[button], bool ? 127 : 0]);
 
                     // when the light gets toggled, we pretend there has been a cc event as we have a state for them
