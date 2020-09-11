@@ -1,23 +1,22 @@
 {
-  "name": "akai-midimix",
-  "version": "0.1.3",
-  "description": "A web-midi wrapper for AKAI Midimix",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tstriker/akai-midimix.git"
-  },
-  "keywords": [
-    "akai",
-    "midimix",
-    "web-midi",
-    "daw",
-    "timedelta"
-  ],
-  "author": "Tom Striker",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tstriker/akai-midimix/issues"
-  },
-  "homepage": "https://github.com/tstriker/akai-midimix#readme"
+    "name": "akai-midimix",
+    "version": "0.1.4",
+    "description": "Web-midi wrapper for AKAI Midimix",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tstriker/akai-midimix.git"
+    },
+    "keywords": [
+        "akai",
+        "midimix",
+        "web-midi",
+        "daw"
+    ],
+    "author": "Tom Striker",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/tstriker/akai-midimix/issues"
+    },
+    "homepage": "https://github.com/tstriker/akai-midimix#readme"
 }

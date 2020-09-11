@@ -16,7 +16,7 @@ import {MidiMix} from "akai-midimix";
 const midi = new MidiMix();
 
 midi.connect().then(() => {
-    // run some commands right on startup (e.g. setting the toggle lights)
+    // run some commands right on startup (e.g. turning on the LEDs)
     console.log("Midi connected!");
     midi.m1 = true; // will light up the m1 button - see below for layout
 });
@@ -30,10 +30,18 @@ midi.addEventListener("keydown", data => {
 });
 ```
 
+# Cleanup
+
+Call `midi.destroy()` in your cleanup routines - it will remove all system-level event listeners as well
+as any listeners you might have attached.
+This is especially useful if you are using hot-reload in your project, as otherwise the event listeners will
+just keep piling up.
+
+
 # Names for the buttons and sliders
 
 The midi has 8 columns, each column has 3 dials, 2 buttons, and a slider.
-Then, extra, there are the bank left, bank right, solo buttons, and the "master" slider.
+In addition, there are the bank left, bank right, solo buttons, and the "master" slider.
 
 To keep things simple, we are making use of the columns. Event data will contain
 both, the original code (in keyCode field) and the symbolic field (in key)).
@@ -52,12 +60,12 @@ s1    s2    s3    s4    s5    s6    s7    s8    master
 ```
 
 
-# Reading dial/slider states and setting the button lights
+# Reading dial/slider states and toggling the LEDs
 
 Note: There doesn't seem to be any way to find out the initial state of the knobs when you connect to it. Luckily, that's what
-the "Send All" hardware button is there for - it will generate change events for all the CC controls and the library
-will have their state from there on out. Alternatively, the state for individual controls will be set when you
-physically poke them.
+the "Send All" hardware button is there for - once connected, hit Send All, and the midimix will send an event per knob,
+and the library will have their state, too.
+Alternatively, the state for individual controls will be set when you physically poke them.
 
 With the caveat above in mind, to get the dial state, simply go `midi.c1` and so on.
 
@@ -71,7 +79,7 @@ Use midi instance's `addEventListener(eventType, callback)` and `removeEventList
 subscribe to the events. Events:
 
 * `cc` - fired on slider/dial turn. The event data is `{code, keyCode, val, prevVal}`
-* `keydown` / `keyup` - fired when any of the buttons are pressed (with the exception of send all).
+* `keydown` / `keyup` - fired when any of the buttons are pressed and released (with the exception of "send all").
    The event data is `{key, code, keyCode}`, where key is the symbolic name, code is the hardware code, and keyCode
    is key again, but in PascalCase. The event data is intentionally set so that you can have single handler for, both,
    midi, and the keyboard.
@@ -81,7 +89,7 @@ subscribe to the events. Events:
 
 This code is licenced under the MIT license,  so you can do with it whatever you want for whatever purpose.
 
-There is barely any documentation out there.
+There is barely any documentation out there, so these two resources were essential on writing this tiny lib:
 
 This link was good to get rolling: https://webmidi-examples.glitch.me/
 

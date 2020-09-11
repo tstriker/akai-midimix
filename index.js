@@ -160,7 +160,7 @@ class MidiMix {
 
     destroy() {
         this.disconnect();
-        this._watchers = [];
+        this._listeners = [];
     }
 }
 
