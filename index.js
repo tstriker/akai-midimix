@@ -150,11 +150,17 @@ class MidiMix {
     }
 
     disconnect() {
+        Object.keys(MidiButtons).forEach(button => {
+            // clean up after ourselves and reset the buttons on unload
+            this[button] = false;
+        });
+
         if (this._input) {
             this._input.removeEventListener("midimessage", this._onMessage);
             this._input.removeEventListener("statechange", this._onStateChange);
             this._input = null;
         }
+        this.connected = false;
         this._output = null;
     }
 
