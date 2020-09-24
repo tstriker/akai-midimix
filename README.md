@@ -1,6 +1,12 @@
 # Web-MIDI wrapper for AKAI Midimix
 
 This package makes it simple to access your AKAI Midimix's state in browser, using the web-midi API.
+In essence:
+
+1. Get your hands on an AKAI Midimix
+2. Plug it in your device through USB (works on smartphones too!)
+3. Open up a web browser running your website with the library's code
+4. Profit!
 
 
 # Install
