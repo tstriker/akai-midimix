@@ -51,7 +51,7 @@ In addition, there are the bank left, bank right, solo buttons, and the "master"
 
 To keep things simple, we are making use of the columns. Event data will contain
 both, the original code (in keyCode field) and the symbolic field (in key)).
-"c" stands for "continuous control", "m" for mute, "r" for rec, and "s" for slider.
+"c" stands for "continuous control", "m" for mute, "ms" for solo, "r" for rec, and "s" for slider.
 
 ```
 c1    c2    c3    c4    c5    c6    c7    c8
@@ -59,6 +59,7 @@ c1a   c2a   c3a   c4a   c5a   c6a   c7a   c8a   bank_left
 c1b   c2b   c3b   c4b   c5b   c6b   c7b   c8b   bank_right
 
 m1    m2    m3    m4    m5    m6    m7    m8    solo
+ms1   ms2   ms3   ms4   ms5   ms6   ms7   ms8
 r1    r2    r3    r4    r5    r6    r7    r8
 
 
