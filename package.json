@@ -1,6 +1,6 @@
 {
     "name": "akai-midimix",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "Web-midi wrapper for AKAI Midimix",
     "main": "index.js",
     "repository": {
